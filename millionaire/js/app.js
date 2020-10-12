@@ -37,6 +37,22 @@ class Question {
 
 }
 
+class Level {
+  constructor (questions) {
+    this.questions = questions;
+    this.level = [];
+  }
+
+  generateLevel () {
+    for (let i = 0; i < this.questions.length; i++) {
+      const newQuestion = new Question(this.questions[i].question, this.questions[i].correct_answer, this.questions[i].incorrect_answers)
+      this.level.push(newQuestion)
+    }
+  }
+
+
+}
+
 
 $(() => {
   $.ajax({
@@ -45,30 +61,16 @@ $(() => {
     console.log(data)
     const newQuestion = new Question(data.results[0].question, data.results[0].correct_answer, data.results[0].incorrect_answers)
     newQuestion.generateQ();
+    $('.question').on('click', (event) => {
+      if ($(event.target).text() === data.results[0].correct_answer) {
+        alert("Correct!")
+        $('h4').remove()
+        $('.container').empty()
+      } else {
+        alert("WRONG!")
+      }
+    })
   })
-  // $.ajax({
-  //   url: "https://opentdb.com/api.php?amount=4&category=9&type=multiple",
-  // }).then((data) => {
-  //   console.log(data)
-  //   const qArr = [data.results[0].correct_answer]
-  //   $('<h3>').text(data.results[0].question).insertAfter('h1')
-  //   for (let i = 0; i < data.results[0].incorrect_answers.length; i++){
-  //     qArr.push(data.results[0].incorrect_answers[i])
-  //   }
-  //   shuffle(qArr);
-  //   console.log(qArr);
-  //   for (let i = 0; i < qArr.length; i++) {
-  //     $('<div>').text(qArr[i]).addClass('question').appendTo('.container')
-  //   }
-  //   $('.question').on('click', (event) => {
-  //     if ($(event.target).text() === data.results[0].correct_answer) {
-  //       alert("Correct!")
-  //       $('.container').empty()
-  //     } else {
-  //       alert("WRONG!")
-  //     }
-  //   })
-  // })
 })
 
 
