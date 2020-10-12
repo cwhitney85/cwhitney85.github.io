@@ -37,6 +37,12 @@ class Question {
 
 }
 
+// const EventHandlers = {
+//   checker: (e) => {
+//     if ($(e.target).text() === )
+//   }
+// }
+
 class Level {
   constructor (questions) {
     this.questions = questions;
@@ -48,29 +54,53 @@ class Level {
       const newQuestion = new Question(this.questions[i].question, this.questions[i].correct_answer, this.questions[i].incorrect_answers)
       this.level.push(newQuestion)
     }
+    
   }
 
+  playLevel () {
+    if (this.level.length > 0) {
+      let newQ = this.level.shift()
+      newQ.generateQ()
+      $('.question').on('click', (event) => {
+        if ($(event.target).text() === newQ.correct) {
+          alert("Correct!")
+          $('h4').remove()
+          $('.container').empty()
+          this.playLevel()
+        } else {
+          alert("WRONG!")
+          $('h4').remove()
+          $('.container').empty()
+        }
+      })
+    } else {
+      alert("You won!")
+    }
+  }
 
 }
 
 
 $(() => {
+  // $.ajax({
+  //   url: "https://opentdb.com/api.php?amount=1&category=9&type=multiple"
+  // }).then((data) => {
+  //   console.log(data)
+  //   const newQuestion = new Question(data.results[0].question, data.results[0].correct_answer, data.results[0].incorrect_answers)
+  //   newQuestion.generateQ();
+  // })
   $.ajax({
-    url: "https://opentdb.com/api.php?amount=1&category=9&type=multiple"
+    url: "https://opentdb.com/api.php?amount=3&category=9&difficulty=easy&type=multiple"
   }).then((data) => {
     console.log(data)
-    const newQuestion = new Question(data.results[0].question, data.results[0].correct_answer, data.results[0].incorrect_answers)
-    newQuestion.generateQ();
-    $('.question').on('click', (event) => {
-      if ($(event.target).text() === data.results[0].correct_answer) {
-        alert("Correct!")
-        $('h4').remove()
-        $('.container').empty()
-      } else {
-        alert("WRONG!")
-      }
-    })
+    const newLevel = new Level(data.results)
+    console.log(newLevel)
+    newLevel.generateLevel()
+    console.log(newLevel.level)
+    newLevel.playLevel()
   })
+
+  
 })
 
 
