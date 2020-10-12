@@ -1,10 +1,5 @@
-const Game = {
-  gameOver: false,
-
-}
-
 class Question {
-  constructor (question, correct, incorrectArray, questionArray) {
+  constructor (question, correct, incorrectArray) {
     this.question = question;
     this.correct = correct;
     this.incorrectArray = incorrectArray;
@@ -33,20 +28,27 @@ class Question {
     for (let i = 0; i < this.questionArray.length; i++) {
       $('<div>').text(this.questionArray[i]).addClass('question').appendTo('.container')
     }
+    $('.question').on('click', (event) => {
+      if ($(event.target).text() === this.correct) {
+        alert("Correct!")
+        $('h4').remove()
+        $('.container').empty()
+        // this.playLevel()
+      } else {
+        alert("WRONG!")
+        $('h4').remove()
+        $('.container').empty()
+      }
+    })
   }
-
 }
 
-// const EventHandlers = {
-//   checker: (e) => {
-//     if ($(e.target).text() === )
-//   }
-// }
 
 class Level {
   constructor (questions) {
     this.questions = questions;
     this.level = [];
+    this.gameOver = false;
   }
 
   generateLevel () {
@@ -54,53 +56,49 @@ class Level {
       const newQuestion = new Question(this.questions[i].question, this.questions[i].correct_answer, this.questions[i].incorrect_answers)
       this.level.push(newQuestion)
     }
-    
   }
 
   playLevel () {
-    if (this.level.length > 0) {
+    do {
       let newQ = this.level.shift()
       newQ.generateQ()
-      $('.question').on('click', (event) => {
-        if ($(event.target).text() === newQ.correct) {
-          alert("Correct!")
-          $('h4').remove()
-          $('.container').empty()
-          this.playLevel()
-        } else {
-          alert("WRONG!")
-          $('h4').remove()
-          $('.container').empty()
-        }
-      })
-    } else {
-      alert("You won!")
     }
+    while (this.level.length > 0) 
+  }
+}
+
+class Game {
+  constructor(level1, level2) {
+    this.level1 = level1;
+    this.level2 = level2;
+    this.gameOver = false;
   }
 
+  playGame () {
+    this.level1.generateLevel()
+    this.level1.playLevel()
+  }
 }
 
 
 $(() => {
-  // $.ajax({
-  //   url: "https://opentdb.com/api.php?amount=1&category=9&type=multiple"
-  // }).then((data) => {
-  //   console.log(data)
-  //   const newQuestion = new Question(data.results[0].question, data.results[0].correct_answer, data.results[0].incorrect_answers)
-  //   newQuestion.generateQ();
-  // })
   $.ajax({
     url: "https://opentdb.com/api.php?amount=3&category=9&difficulty=easy&type=multiple"
   }).then((data) => {
-    console.log(data)
+    // console.log(data)
     const newLevel = new Level(data.results)
-    console.log(newLevel)
-    newLevel.generateLevel()
-    console.log(newLevel.level)
-    newLevel.playLevel()
+    // console.log(newLevel)
+    $.ajax({
+      url: "https://opentdb.com/api.php?amount=4&category=9&difficulty=medium&type=multiple"
+    }).then((mediumData) => {
+      // console.log(mediumData)
+      const medLevel = new Level(mediumData.results)
+      // console.log(medLevel)
+      const newGame = new Game(newLevel, medLevel)
+      newGame.playGame();
+    })
   })
 
-  
 })
 
 
