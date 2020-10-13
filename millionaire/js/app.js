@@ -34,28 +34,27 @@ const questionGetter = () => {
 }
 
 const Game = {
-  gameOver: false,
+  gameOn: true,
   questions: 10,
 
-}
+  checker: () => {
+    if (this.gameOn === true) {
+      questionGetter()
+    } else {
+      alert("You lose!")
+    }
+  },
 
-// const checker = (string) => {
-//   let finalAnswer = prompt("Is that your final answer?", "yes(1), no(2)")
-//   if (finalAnswer === '1') {
-//     if (string === this.correct) {
-//       alert("Correct!")
-//       $('h4').remove()
-//       $('.container').empty()
-//       questionGetter()
-//     } else {
-//       alert("WRONG!")
-//       $('h4').remove()
-//       $('.container').empty()
-//     }
-//   } else {
-//     return;
-//   }
-// }
+  start: () => {
+    const $modal = $('#modal')
+    $modal.show()
+    $closeBtn = $('#close')
+    $closeBtn.on('click', ()=> {
+      $modal.hide()
+      questionGetter()
+    })
+  }
+}
 
 //========================
 // Question Class ========
@@ -98,7 +97,6 @@ class Question {
           alert("Correct!")
           $('h4').remove()
           $('.container').empty()
-          questionGetter()
         } else {
           alert("WRONG!")
           $('h4').remove()
@@ -107,13 +105,16 @@ class Question {
       }
     })
   }
+
 }
 
 
 
 
 $(() => {
-  questionGetter()
+
+  Game.start()
+  
 
 })
 
