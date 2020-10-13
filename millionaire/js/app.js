@@ -1,6 +1,12 @@
+// Progress Bar functionality inspired by https://codepen.io/volt122/pen/wbLrXm
+
 // getQuestion and questionGetter functions created with assistance from General Assembly TA Glenn Brown
+// Control flow for question difficulty
 let counter = 1;
+// Control flow for progress bar
 let progress = 0;
+
+// API call
 const getQuestion = (apiUrl) => {
   $.ajax({
     url: apiUrl
@@ -12,7 +18,7 @@ const getQuestion = (apiUrl) => {
   })
 }
 
-
+// Game flow with API calls sorted for difficulty
 const questionGetter = () => {
   console.log(counter)
   if (counter >= 1 && counter < 4) {
@@ -34,6 +40,10 @@ const questionGetter = () => {
     alert("You won!")
   }
 }
+
+//========================
+// Game Object ===========
+//========================
 
 const Game = {
   gameOn: true,
@@ -91,9 +101,9 @@ class Question {
     this.shuffle()
     $('<h4>').text(this.question).insertAfter('h1')
     for (let i = 0; i < this.questionArray.length; i++) {
-      $('<div>').text(this.questionArray[i]).addClass('question').appendTo('.container')
+      $('<div>').text(this.questionArray[i]).addClass('answer').appendTo('.question')
     }
-    $('.question').on('click', (e) => {
+    $('.answer').on('click', (e) => {
       let finalAnswer = prompt("Is that your final answer?", "yes(1), no(2)")
       if (finalAnswer === '1') {
         if ($(e.target).text() === this.correct) {
@@ -101,12 +111,12 @@ class Question {
           progress += 10;
           $('.progress-bar').width(progress + '%')
           $('h4').remove()
-          $('.container').empty()
+          $('.question').empty()
           questionGetter()
         } else {
           alert("WRONG!")
           $('h4').remove()
-          $('.container').empty()
+          $('.question').empty()
         }
       }
     })

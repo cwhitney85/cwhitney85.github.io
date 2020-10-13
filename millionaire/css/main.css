@@ -2,7 +2,7 @@ body {
   background-color: #85bb65;
 }
 
-.container {
+.question {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -13,7 +13,7 @@ body {
   text-align: center;
 }
 
-.question {
+.answer {
   border-radius: 25%;
   margin: 10px 20px;
   border: solid gold 1px;
