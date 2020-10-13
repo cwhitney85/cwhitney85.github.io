@@ -1,4 +1,6 @@
 // getQuestion and questionGetter functions created with assistance from General Assembly TA Glenn Brown
+let counter = 1;
+let progress = 0;
 const getQuestion = (apiUrl) => {
   $.ajax({
     url: apiUrl
@@ -10,7 +12,7 @@ const getQuestion = (apiUrl) => {
   })
 }
 
-let counter = 1;
+
 const questionGetter = () => {
   console.log(counter)
   if (counter >= 1 && counter < 4) {
@@ -52,7 +54,7 @@ const Game = {
     $closeBtn.on('click', ()=> {
       $modal.hide()
       questionGetter()
-      $('<div>').addClass('progress-bar').appendTo('.progress')
+      
     })
   }
 }
@@ -96,9 +98,11 @@ class Question {
       if (finalAnswer === '1') {
         if ($(e.target).text() === this.correct) {
           alert("Correct!")
+          progress += 10;
+          $('.progress-bar').width(progress + '%')
           $('h4').remove()
           $('.container').empty()
-          
+          questionGetter()
         } else {
           alert("WRONG!")
           $('h4').remove()
