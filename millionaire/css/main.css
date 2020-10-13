@@ -1,5 +1,6 @@
 body {
   background-color: #85bb65;
+  
 }
 
 .container {
@@ -21,7 +22,9 @@ body {
   cursor: pointer;
   border: solid gold 1px;
   border-radius: 25%;
-  margin: 1%;
+  margin: 5%;
+  box-shadow: 5px 10px;
+  background-color: #85bb65;
 }
 
 .progress {
@@ -33,6 +36,7 @@ body {
 
 #modal {
   background-color: rgba(0, 0, 0, 0.4);
+  color: black;
 	position: fixed;
 	top: 0;
 	left: 0;
