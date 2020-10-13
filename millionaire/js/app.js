@@ -99,9 +99,11 @@ class Question {
 
   generateQ () {
     this.shuffle()
-    $('<h4>').text(this.question).insertAfter('h1')
+    $('<h4>').text(this.question).addClass('question-text').insertBefore('.question')
     for (let i = 0; i < this.questionArray.length; i++) {
-      $('<div>').text(this.questionArray[i]).addClass('answer').appendTo('.question')
+      $('<div>').addClass("col-lg-6 col-md-6 col-sm-8 col-xs-12").html(`
+      <div class="answer">${this.questionArray[i]}</div>
+      `).appendTo('.question')
     }
     $('.answer').on('click', (e) => {
       let finalAnswer = prompt("Is that your final answer?", "yes(1), no(2)")

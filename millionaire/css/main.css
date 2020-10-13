@@ -2,26 +2,27 @@ body {
   background-color: #85bb65;
 }
 
+.container {
+  margin: 2% auto;
+  text-align: center;
+}
+
 .question {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  width: 50%;
-  height: 300px;
-  margin: auto;
-  align-items: stretch;
+
+  width: 75%;
+  
+  margin: 5% auto;
+  
   text-align: center;
 }
 
 .answer {
-  border-radius: 25%;
-  margin: 10px 20px;
-  border: solid gold 1px;
-  padding: 25%;
+  padding: 15px;
   cursor: pointer;
+  border: solid gold 1px;
+  border-radius: 25%;
+  margin: 1%;
 }
-
-
 
 .progress {
   width: 75%;
