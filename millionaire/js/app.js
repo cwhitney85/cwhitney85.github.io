@@ -106,8 +106,11 @@ class Question {
       `).appendTo('.question')
     }
     $('.answer').on('click', (e) => {
-      let finalAnswer = prompt("Is that your final answer?", "yes(1), no(2)")
-      if (finalAnswer === '1') {
+      $('#final-answer').show()
+      $('#no').on('click', () => $('#final-answer').hide())
+      $('#yes').on('click', (event) => {
+        event.stopImmediatePropagation()
+        $('#final-answer').hide()
         if ($(e.target).text() === this.correct) {
           alert("Correct!")
           progress += 10;
@@ -120,7 +123,7 @@ class Question {
           $('h4').remove()
           $('.question').empty()
         }
-      }
+      })
     })
   }
 
