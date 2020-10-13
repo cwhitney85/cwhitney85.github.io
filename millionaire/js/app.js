@@ -52,6 +52,7 @@ const Game = {
     $closeBtn.on('click', ()=> {
       $modal.hide()
       questionGetter()
+      $('<div>').addClass('progress-bar').appendTo('.progress')
     })
   }
 }
@@ -97,6 +98,7 @@ class Question {
           alert("Correct!")
           $('h4').remove()
           $('.container').empty()
+          
         } else {
           alert("WRONG!")
           $('h4').remove()
