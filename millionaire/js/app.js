@@ -1,3 +1,38 @@
+// getQuestion and questionGetter functions created with assistance from Genral Assembly TA Glenn Brown
+const getQuestion = (apiUrl) => {
+  $.ajax({
+    url: apiUrl
+  }).then((data) => {
+    console.log(data)
+    const newQ = new Question(data.results[0].question, data.results[0].correct_answer,data.results[0].incorrect_answers)
+    console.log(newQ)
+    newQ.generateQ()
+  })
+}
+
+let counter = 1;
+const questionGetter = () => {
+  console.log(counter)
+  if (counter >= 1 && counter < 4) {
+    getQuestion('https://opentdb.com/api.php?amount=1&category=9&difficulty=easy&type=multiple');
+    counter += 1;
+    console.log(counter)
+    // questionGetter()
+  } else if (counter >= 4 && counter < 8) {
+    getQuestion('https://opentdb.com/api.php?amount=1&category=9&difficulty=medium&type=multiple')
+    counter += 1;
+    console.log(counter)
+    // questionGetter()
+  } else if (counter >= 8 && counter <= 10) {
+    getQuestion('https://opentdb.com/api.php?amount=1&category=9&difficulty=hard&type=multiple');
+    counter += 1;
+    console.log(counter)
+    // questionGetter()
+  } else {
+    alert("You won!")
+  }
+}
+
 class Question {
   constructor (question, correct, incorrectArray) {
     this.question = question;
@@ -33,7 +68,7 @@ class Question {
         alert("Correct!")
         $('h4').remove()
         $('.container').empty()
-        // this.playLevel()
+        questionGetter()
       } else {
         alert("WRONG!")
         $('h4').remove()
@@ -44,61 +79,96 @@ class Question {
 }
 
 
-class Level {
-  constructor (questions) {
-    this.questions = questions;
-    this.level = [];
-    this.gameOver = false;
-  }
+// class Level {
+//   constructor (questions) {
+//     this.questions = questions;
+//     this.level = [];
+//     this.gameOver = false;
+//   }
 
-  generateLevel () {
-    for (let i = 0; i < this.questions.length; i++) {
-      const newQuestion = new Question(this.questions[i].question, this.questions[i].correct_answer, this.questions[i].incorrect_answers)
-      this.level.push(newQuestion)
-    }
-  }
+//   generateLevel () {
+//     for (let i = 0; i < this.questions.length; i++) {
+//       const newQuestion = new Question(this.questions[i].question, this.questions[i].correct_answer, this.questions[i].incorrect_answers)
+//       this.level.push(newQuestion)
+//     }
+//   }
 
-  playLevel () {
-    do {
-      let newQ = this.level.shift()
-      newQ.generateQ()
-    }
-    while (this.level.length > 0) 
-  }
-}
+//   playLevel () {
+//     if (this.level.length > 0) {
+//       let newQ = this.level.shift()
+//       newQ.generateQ()
+//       $('.question').on('click', (event) => {
+//         if ($(event.target).text() === newQ.correct) {
+//           alert("Correct!")
+//           $('h4').remove()
+//           $('.container').empty()
+//           this.playLevel()
+//         } else {
+//           alert("WRONG!")
+//           $('h4').remove()
+//           $('.container').empty()
+//         }
+//       })
+//     }
+//   //   this.generateLevel()
+//   //   do {
+//   //     let newQ = this.level.shift()
+//   //     newQ.generateQ()
+//   //     $('.question').on('click', (event) => {
+//   //       if ($(event.target).text() === newQ.correct) {
+//   //         alert("Correct!")
+//   //         $('h4').remove()
+//   //         $('.container').empty()
+//   //         // this.playLevel()
+//   //       } else {
+//   //         alert("WRONG!")
+//   //         $('h4').remove()
+//   //         $('.container').empty()
+//   //       }
+//   //     })
+//   //   }
+//   //   while (this.level.length > 0) 
+//   }
+  
+// }
 
-class Game {
-  constructor(level1, level2) {
-    this.level1 = level1;
-    this.level2 = level2;
-    this.gameOver = false;
-  }
+// class Game {
+//   constructor(level1, level2) {
+//     this.level1 = level1;
+//     this.level2 = level2;
+//     this.gameOver = false;
+//   }
 
-  playGame () {
-    this.level1.generateLevel()
-    this.level1.playLevel()
-  }
-}
+//   playGame () {
+//     this.level1.generateLevel()
+//     this.level1.playLevel()
+//     // this.level2.generateLevel()
+//     // this.level2.playLevel()
+//   }
+
+// }
 
 
 $(() => {
-  $.ajax({
-    url: "https://opentdb.com/api.php?amount=3&category=9&difficulty=easy&type=multiple"
-  }).then((data) => {
-    // console.log(data)
-    const newLevel = new Level(data.results)
-    // console.log(newLevel)
-    $.ajax({
-      url: "https://opentdb.com/api.php?amount=4&category=9&difficulty=medium&type=multiple"
-    }).then((mediumData) => {
-      // console.log(mediumData)
-      const medLevel = new Level(mediumData.results)
-      // console.log(medLevel)
-      const newGame = new Game(newLevel, medLevel)
-      newGame.playGame();
-    })
-  })
+  // $.ajax({
+  //   url: "https://opentdb.com/api.php?amount=3&category=9&difficulty=easy&type=multiple"
+  // }).then((data) => {
+  //   // console.log(data)
+  //   const newLevel = new Level(data.results)
+  //   console.log(newLevel)
+  //   $.ajax({
+  //     url: "https://opentdb.com/api.php?amount=4&category=9&difficulty=medium&type=multiple"
+  //   }).then((mediumData) => {
+  //     // console.log(mediumData)
+  //     const medLevel = new Level(mediumData.results)
+  //     console.log(medLevel)
+  //     const newGame = new Game(newLevel, medLevel)
+  //     newGame.playGame();
+  //   })
+  // })
 
+  // getQuestion('https://opentdb.com/api.php?amount=1&category=9&difficulty=easy&type=multiple')
+  questionGetter()
 })
 
 
