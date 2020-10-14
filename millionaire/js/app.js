@@ -11,7 +11,7 @@ const getQuestion = (apiUrl) => {
   $.ajax({
     url: apiUrl
   }).then((data) => {
-    console.log(data)
+    // console.log(data)
     const newQ = new Question(data.results[0].question, data.results[0].correct_answer,data.results[0].incorrect_answers)
     console.log(newQ)
     newQ.generateQ()
@@ -24,12 +24,12 @@ const questionGetter = () => {
   if (counter >= 1 && counter < 4) {
     getQuestion('https://opentdb.com/api.php?amount=1&category=9&difficulty=easy&type=multiple');
     counter += 1;
-    console.log(counter)
+    // console.log(counter)
     // questionGetter()
   } else if (counter >= 4 && counter < 8) {
     getQuestion('https://opentdb.com/api.php?amount=1&category=9&difficulty=medium&type=multiple')
     counter += 1;
-    console.log(counter)
+    // console.log(counter)
     // questionGetter()
   } else if (counter >= 8 && counter <= 10) {
     getQuestion('https://opentdb.com/api.php?amount=1&category=9&difficulty=hard&type=multiple');
@@ -50,6 +50,7 @@ const Game = {
   questions: 10,
   money: 0,
   isFinalAnswer: false,
+  time: 0,
 
   checker: () => {
     if (this.gameOn === true) {
@@ -111,6 +112,21 @@ const Game = {
     $final.show()
   },
 
+  timeIncrease: () => {
+    if (Game.time >= 100) {
+      alert("Time's up! You lose!")
+    } else {
+      Game.time++;
+      $('#timer').width(Game.time + '%');
+      console.log(Game.time)
+    }
+  },
+
+  startTimer: () => {
+    setInterval(Game.timeIncrease, 300)
+    
+  }
+
 }
 
 //========================
@@ -149,6 +165,7 @@ class Question {
       <div class="answer">${this.questionArray[i]}</div>
       `).appendTo('.question')
     }
+    Game.startTimer()
     $('.answer').on('click', (e) => {
       Game.finalAnswer()
       $('.final-answer-buttons').on('click', (ev) => {
@@ -159,7 +176,7 @@ class Question {
           if ($(e.target).text() === this.correct) {
             alert("Correct!")
             progress += 10
-            $('.progress-bar').width(progress + '%')
+            $('#score').width(progress + '%')
             $('h4').remove()
             $('.question').empty()
             Game.keepGoing()
