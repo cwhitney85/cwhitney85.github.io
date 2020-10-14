@@ -48,6 +48,7 @@ const questionGetter = () => {
 const Game = {
   gameOn: true,
   questions: 10,
+  isFinalAnswer: false,
 
   checker: () => {
     if (this.gameOn === true) {
@@ -66,7 +67,21 @@ const Game = {
       questionGetter()
       
     })
-  }
+  },
+
+  finalAnswer: () => {
+    const $final = $('<div>').attr('id', 'final-answer').html(`
+    <div id="final-answer-text">
+      <h5>Is that your final answer?</h5>
+      <div id="final-answer-footer">
+        <button class="final-answer-buttons" id="yes" href="#">Final Answer</button>
+        <button class="final-answer-buttons" id="no" href="#">On second thought...</button>
+      </div>
+    </div>
+    `).insertAfter('#modal')
+    $final.show()
+  },
+
 }
 
 //========================
@@ -106,30 +121,31 @@ class Question {
       `).appendTo('.question')
     }
     $('.answer').on('click', (e) => {
-      $('#final-answer').show()
-      $('#no').on('click', () => $('#final-answer').hide())
-      $('#yes').on('click', (ev) => {
-        ev.stopImmediatePropagation()
-        $('#final-answer').hide()
-        if ($(e.target).text() === this.correct) {
-          alert("Correct!")
-          progress += 10;
-          $('.progress-bar').width(progress + '%')
-          $('h4').remove()
-          $('.question').empty()
-          questionGetter()
-        } else {
-          alert("WRONG!")
-          $('h4').remove()
-          $('.question').empty()
+      Game.finalAnswer()
+      $('.final-answer-buttons').on('click', (ev) => {
+        if ($(ev.target).text() === 'On second thought...') {
+          $('#final-answer').hide()
+        } else if ($(ev.target).text() === 'Final Answer') {
+          $('#final-answer').hide()
+          $('#final-answer').remove()
+          if ($(e.target).text() === this.correct) {
+            alert("Correct!")
+            progress += 10
+            $('.progress-bar').width(progress + '%')
+            $('h4').remove()
+            $('.question').empty()
+            questionGetter()
+          } else {
+            alert("WRONG!")
+            $('h4').remove()
+            $('.question').empty()
+          }
         }
       })
-    })
+    })    
   }
 
 }
-
-
 
 
 $(() => {
