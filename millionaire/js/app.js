@@ -48,6 +48,7 @@ const questionGetter = () => {
 const Game = {
   gameOn: true,
   questions: 10,
+  money: 0,
   isFinalAnswer: false,
 
   checker: () => {
@@ -67,6 +68,34 @@ const Game = {
       questionGetter()
       
     })
+  },
+
+  keepGoing: () => {
+    const $continue = $('<div>').attr('id', 'continue').html(`
+      <div id="continue-text">
+        <h5>You currently have $${Game.money}. Do you want to keep going for the million?</h5>
+        <div id="continue-footer">
+          <button class="continue-buttons" id="more">I want to be a millionaire!</button>
+          <button class="continue-buttons" id="done">I'll take the money Reej</button>
+        </div>
+      </div>
+    `).insertAfter('#modal')
+    $continue.show()
+    $('.continue-buttons').on('click', (e) => {
+      if ($(e.target).text() === "I want to be a millionaire!") {
+        $continue.remove()
+        questionGetter()
+      } else if ($(e.target).text() === "I'll take the money Reej"){
+        $continue.remove()
+        alert("Thanks for playing!")
+      }
+    })
+    // let nextQ = prompt("Would you like to continue?", "yes(1) no(2)")
+    // if (nextQ === '1') {
+    //   questionGetter()
+    // } else {
+    //   alert("Thanks for playing!")
+    // }
   },
 
   finalAnswer: () => {
@@ -126,7 +155,6 @@ class Question {
         if ($(ev.target).text() === 'On second thought...') {
           $('#final-answer').hide()
         } else if ($(ev.target).text() === 'Final Answer') {
-          $('#final-answer').hide()
           $('#final-answer').remove()
           if ($(e.target).text() === this.correct) {
             alert("Correct!")
@@ -134,7 +162,7 @@ class Question {
             $('.progress-bar').width(progress + '%')
             $('h4').remove()
             $('.question').empty()
-            questionGetter()
+            Game.keepGoing()
           } else {
             alert("WRONG!")
             $('h4').remove()
