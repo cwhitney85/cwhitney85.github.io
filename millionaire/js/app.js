@@ -108,8 +108,8 @@ class Question {
     $('.answer').on('click', (e) => {
       $('#final-answer').show()
       $('#no').on('click', () => $('#final-answer').hide())
-      $('#yes').on('click', (event) => {
-        event.stopImmediatePropagation()
+      $('#yes').on('click', (ev) => {
+        ev.stopImmediatePropagation()
         $('#final-answer').hide()
         if ($(e.target).text() === this.correct) {
           alert("Correct!")
