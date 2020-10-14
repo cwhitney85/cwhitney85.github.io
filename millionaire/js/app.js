@@ -51,6 +51,7 @@ const Game = {
   money: 0,
   isFinalAnswer: false,
   time: 0,
+  pauseTimer: false,
 
   checker: () => {
     if (this.gameOn === true) {
@@ -89,14 +90,9 @@ const Game = {
       } else if ($(e.target).text() === "I'll take the money Reej"){
         $continue.remove()
         alert("Thanks for playing!")
+        ('.container').empty()
       }
     })
-    // let nextQ = prompt("Would you like to continue?", "yes(1) no(2)")
-    // if (nextQ === '1') {
-    //   questionGetter()
-    // } else {
-    //   alert("Thanks for playing!")
-    // }
   },
 
   finalAnswer: () => {
@@ -112,19 +108,22 @@ const Game = {
     $final.show()
   },
 
-  timeIncrease: () => {
-    if (Game.time >= 100) {
-      alert("Time's up! You lose!")
-    } else {
-      Game.time++;
-      $('#timer').width(Game.time + '%');
-      console.log(Game.time)
-    }
-  },
-
   startTimer: () => {
-    setInterval(Game.timeIncrease, 300)
-    
+    Game.pauseTimer = false;
+    let timer = setInterval(timeIncrease, 300);
+    function timeIncrease() {
+      if (Game.pauseTimer === false) {
+        if (Game.time >= 100) {
+          clearInterval(timer);
+          alert("Time's up!")
+          Game.time = 0;
+        } else {
+          Game.time++;
+          $('#timer').width(Game.time + '%');
+          console.log(Game.time)
+        }
+      } 
+    }
   }
 
 }
@@ -167,23 +166,27 @@ class Question {
     }
     Game.startTimer()
     $('.answer').on('click', (e) => {
+      Game.pauseTimer = true;
       Game.finalAnswer()
       $('.final-answer-buttons').on('click', (ev) => {
         if ($(ev.target).text() === 'On second thought...') {
           $('#final-answer').hide()
+          Game.pauseTimer = false;
         } else if ($(ev.target).text() === 'Final Answer') {
           $('#final-answer').remove()
           if ($(e.target).text() === this.correct) {
             alert("Correct!")
             progress += 10
+            Game.time = 0
+            
+            $('#timer').width('0%')
             $('#score').width(progress + '%')
             $('h4').remove()
             $('.question').empty()
             Game.keepGoing()
           } else {
             alert("WRONG!")
-            $('h4').remove()
-            $('.question').empty()
+            $('.container').empty()
           }
         }
       })
