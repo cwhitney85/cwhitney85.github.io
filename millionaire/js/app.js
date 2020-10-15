@@ -53,6 +53,8 @@ const Game = {
   time: 0,
   pauseTimer: false,
   progress: 0,
+  timer: 0,
+
 
   start: () => {
     const $modal = $('#modal')
@@ -102,34 +104,25 @@ const Game = {
   },
 
   startTimer: () => {
+    $('<div>').addClass('progress').attr('id', 'timer-bar').html(`
+    <div id="timer" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+  `).insertAfter('#score-bar')
     Game.pauseTimer = false;
-    let timer = setInterval(timeIncrease, 300);
+    Game.timer = setInterval(timeIncrease, 300);
     function timeIncrease() {
       if (Game.pauseTimer === false) {
         if (Game.time >= 100) {
-          clearInterval(timer);
+          clearInterval(Game.timer);
           alert("Time's up!")
           Game.time = 0;
         } else {
+
           Game.time++;
           $('#timer').width(Game.time + '%');
-          // console.log(Game.time)
         }
       } 
     }
   },
-
-  // cashCount: () => {
-  //   let currentStack = $('#money').text()
-  //   let numberStack = currentStack.replace('$', '')
-  //   let moneyNumber = Game.money.replace('$', '')
-  //   let newStack = parseInt(numberStack.replace(/,/g, ''))
-  //   let newMoney = parseInt(moneyNumber.replace(/,/g, ''))
-  //   while (newStack < newMoney) {
-  //     $('#money').text(`$${newStack}`)
-  //     newStack++
-  //   }
-  // },
 
   checker: () => {
     if (Game.question !== 15) {
@@ -164,6 +157,7 @@ const Game = {
       } 
       progress += 6.67
       Game.time = 0
+      clearInterval(Game.timer)
       $('#money').text(`${Game.money}`)
       $('#timer').width('0%')
       $('#score').width(progress + '%')
@@ -221,9 +215,6 @@ class Question {
       <div class="answer">${this.questionArray[i]}</div>
       `).appendTo('.question')
     }
-    $('<div>').addClass('progress').attr('id', 'timer-bar').html(`
-      <div id="timer" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-    `).insertAfter('#score-bar')
     Game.startTimer()
     $('.answer').on('click', (e) => {
       Game.pauseTimer = true;
