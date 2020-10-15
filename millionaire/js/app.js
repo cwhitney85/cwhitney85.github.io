@@ -124,6 +124,21 @@ const Game = {
         }
       } 
     }
+  },
+
+  checker: () => {
+    progress += 10
+    Game.time = 0
+    $('#timer').width('0%')
+    $('#score').width(progress + '%')
+    $('h4').remove()
+    $('.question').empty()
+    Game.keepGoing()
+  },
+
+  endGame: () => {
+    $('.container').empty()
+    $('h1').text('YOU LOSE!').css('margin', '0 auto').appendTo('body')
   }
 
 }
@@ -171,22 +186,16 @@ class Question {
       $('.final-answer-buttons').on('click', (ev) => {
         if ($(ev.target).text() === 'On second thought...') {
           $('#final-answer').hide()
-          Game.pauseTimer = false;
+          
         } else if ($(ev.target).text() === 'Final Answer') {
           $('#final-answer').remove()
           if ($(e.target).text() === this.correct) {
-            alert("Correct!")
-            progress += 10
-            Game.time = 0
-            
-            $('#timer').width('0%')
-            $('#score').width(progress + '%')
-            $('h4').remove()
-            $('.question').empty()
-            Game.keepGoing()
+            $(e.target).css('background-color', '#85bb65').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100)
+            setTimeout(Game.checker, 3000)
           } else {
-            alert("WRONG!")
-            $('.container').empty()
+            // alert("WRONG!")
+            $(e.target).css('background-color', '#ff3333').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100)
+            setTimeout(Game.endGame, 3000)
           }
         }
       })
