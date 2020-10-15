@@ -66,7 +66,8 @@ h4 {
 	width: 100%;
 	z-index: 1;
 	overflow: auto;
-	display: none;
+  display: none;
+  margin: auto;
 }
 
 #modal-text {
