@@ -10,27 +10,48 @@ h1, h2 {
   color: gold;
 }
 
+h4 {
+  color: gold;
+}
+
 .container {
   margin: auto;
   text-align: center;
 }
 
-.question {
-
-  width: 75%;
-  
+#life {
+  width: 50%;
   margin: 5% auto;
-  
   text-align: center;
+  justify-content: center;
 }
 
-h4 {
-  color: gold;
+.lifeline {
+  padding: 15px;
+  cursor: pointer;
+  border-radius: 25%;
+  box-shadow: 0px 0px 0px 3px black;
+  transition: box-shadow 0.1s linear;
+  margin: 0.5em;
+  background-color: #04d9ff;
+  color: black;
 }
+
+/* Border animation from https://css-tricks.com/animating-border/ */
+.lifeline:hover { 
+  box-shadow: 0px 0px 0px 7px black;
+}
+
+.question {
+  width: 75%;
+  margin: 5% auto;
+  text-align: center;
+  justify-content: center;
+}
+
 .answer {
   padding: 15px;
   cursor: pointer;
-  
   box-shadow: 0px 0px 0px 3px gold;
   transition: box-shadow 0.1s linear;
   border-radius: 25%;
