@@ -168,6 +168,7 @@ const Game = {
       $('#timer').width('0%')
       $('#score').width(progress + '%')
       $('h4').remove()
+      $('#timer-bar').remove()
       $('.question').empty()
       Game.keepGoing()
     } else {
@@ -220,7 +221,10 @@ class Question {
       <div class="answer">${this.questionArray[i]}</div>
       `).appendTo('.question')
     }
-    // Game.startTimer()
+    $('<div>').addClass('progress').attr('id', 'timer-bar').html(`
+      <div id="timer" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    `).insertAfter('#score-bar')
+    Game.startTimer()
     $('.answer').on('click', (e) => {
       Game.pauseTimer = true;
       Game.finalAnswer()
@@ -235,7 +239,6 @@ class Question {
             $(e.target).css('background-color', '#85bb65').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100)
             setTimeout(Game.checker, 3000)
           } else {
-            // alert("WRONG!")
             $(e.target).css('background-color', '#ff3333').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100)
             setTimeout(Game.endGame, 3000)
           }
