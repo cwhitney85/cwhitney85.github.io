@@ -20,21 +20,21 @@ const getQuestion = (apiUrl) => {
 
 // Game flow with API calls sorted for difficulty
 const questionGetter = () => {
-  console.log(counter)
-  if (counter >= 1 && counter < 4) {
+  // console.log(Game.question)
+  if (Game.question >= 0 && Game.question < 6) {
     getQuestion('https://opentdb.com/api.php?amount=1&category=9&difficulty=easy&type=multiple');
-    counter += 1;
-    // console.log(counter)
+    Game.question += 1;
+    // console.log(Game.question)
     // questionGetter()
-  } else if (counter >= 4 && counter < 8) {
+  } else if (Game.question >= 6 && Game.question < 11) {
     getQuestion('https://opentdb.com/api.php?amount=1&category=9&difficulty=medium&type=multiple')
-    counter += 1;
-    // console.log(counter)
+    Game.question += 1;
+    // console.log(Game.question)
     // questionGetter()
-  } else if (counter >= 8 && counter <= 10) {
+  } else if (Game.question >= 11 && Game.question < 15) {
     getQuestion('https://opentdb.com/api.php?amount=1&category=9&difficulty=hard&type=multiple');
-    counter += 1;
-    console.log(counter)
+    Game.question += 1;
+    console.log(Game.question)
     // questionGetter()
   } else {
     alert("You won!")
@@ -47,19 +47,12 @@ const questionGetter = () => {
 
 const Game = {
   gameOn: true,
-  questions: 10,
-  money: 0,
+  question: 0,
+  money: '',
   isFinalAnswer: false,
   time: 0,
   pauseTimer: false,
-
-  checker: () => {
-    if (this.gameOn === true) {
-      questionGetter()
-    } else {
-      alert("You lose!")
-    }
-  },
+  progress: 0,
 
   start: () => {
     const $modal = $('#modal')
@@ -75,7 +68,7 @@ const Game = {
   keepGoing: () => {
     const $continue = $('<div>').attr('id', 'continue').html(`
       <div id="continue-text">
-        <h5>You currently have $${Game.money}. Do you want to keep going for the million?</h5>
+        <h5>You currently have ${Game.money}. Do you want to keep going for the million?</h5>
         <div id="continue-footer">
           <button class="continue-buttons" id="more">I want to be a millionaire!</button>
           <button class="continue-buttons" id="done">I'll take the money Reej</button>
@@ -120,20 +113,68 @@ const Game = {
         } else {
           Game.time++;
           $('#timer').width(Game.time + '%');
-          console.log(Game.time)
+          // console.log(Game.time)
         }
       } 
     }
   },
 
+  // cashCount: () => {
+  //   let currentStack = $('#money').text()
+  //   let numberStack = currentStack.replace('$', '')
+  //   let moneyNumber = Game.money.replace('$', '')
+  //   let newStack = parseInt(numberStack.replace(/,/g, ''))
+  //   let newMoney = parseInt(moneyNumber.replace(/,/g, ''))
+  //   while (newStack < newMoney) {
+  //     $('#money').text(`$${newStack}`)
+  //     newStack++
+  //   }
+  // },
+
   checker: () => {
-    progress += 10
-    Game.time = 0
-    $('#timer').width('0%')
-    $('#score').width(progress + '%')
-    $('h4').remove()
-    $('.question').empty()
-    Game.keepGoing()
+    if (Game.question !== 15) {
+      if (Game.question === 1) {
+        Game.money = '$500'
+      } else if (Game.question === 2) {
+        Game.money = '$1,000'
+      } else if (Game.question === 3) {
+        Game.money = '$2,000'
+      } else if (Game.question === 4) {
+        Game.money = '$3,000'
+      } else if (Game.question === 5) {
+        Game.money = '$5,000'
+      } else if (Game.question === 6) {
+        Game.money = '$7,500'
+      } else if (Game.question === 7) {
+        Game.money = '$10,000'
+      } else if (Game.question === 8) {
+        Game.money = '$15,000'
+      } else if (Game.question === 9) {
+        Game.money = '$25,000'
+      } else if (Game.question === 10) {
+        Game.money = '$50,000'
+      } else if (Game.question === 11) {
+        Game.money = '$75,000'
+      } else if (Game.question === 12) {
+        Game.money = '$150,000'
+      } else if (Game.question === 13) {
+        Game.money = '$250,000'
+      } else if (Game.question === 14) {
+        Game.money = '$500,000'
+      } 
+      progress += 10
+      Game.time = 0
+      $('#money').text(`${Game.money}`)
+      $('#timer').width('0%')
+      $('#score').width(progress + '%')
+      $('h4').remove()
+      $('.question').empty()
+      Game.keepGoing()
+    } else {
+      $('.container').empty()
+      $('#money').text(`${Game.money}`)
+      $('<h1>').text('You\'re a Millionaire!').appendTo('.container')
+    }
   },
 
   endGame: () => {
@@ -179,7 +220,7 @@ class Question {
       <div class="answer">${this.questionArray[i]}</div>
       `).appendTo('.question')
     }
-    Game.startTimer()
+    // Game.startTimer()
     $('.answer').on('click', (e) => {
       Game.pauseTimer = true;
       Game.finalAnswer()
@@ -190,6 +231,7 @@ class Question {
         } else if ($(ev.target).text() === 'Final Answer') {
           $('#final-answer').remove()
           if ($(e.target).text() === this.correct) {
+            // Flash effect from https://stackoverflow.com/questions/275931/how-do-you-make-an-element-flash-in-jquery
             $(e.target).css('background-color', '#85bb65').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100)
             setTimeout(Game.checker, 3000)
           } else {
