@@ -162,7 +162,7 @@ const Game = {
       } else if (Game.question === 14) {
         Game.money = '$500,000'
       } 
-      progress += 10
+      progress += 6.67
       Game.time = 0
       $('#money').text(`${Game.money}`)
       $('#timer').width('0%')
@@ -179,7 +179,7 @@ const Game = {
 
   endGame: () => {
     $('.container').empty()
-    $('h1').text('YOU LOSE!').css('margin', '0 auto').appendTo('body')
+    $('h1').text('YOU LOSE!').css('margin', '0 auto').appendTo('.container')
   }
 
 }
