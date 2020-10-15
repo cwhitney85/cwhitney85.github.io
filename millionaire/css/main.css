@@ -56,14 +56,21 @@ h4 {
 }
 
 /* Modal designs from GA SEI 9-21 modal_practice w03d02 */
+#intro {
+  width: 75%;
+  
+  margin: 5% auto;
+  
+  text-align: center;
+}
+
 #modal {
   background-color: rgba(0, 0, 0, 0.4);
   color: black;
 	position: fixed;
 	top: 0;
 	left: 0;
-	height: 100%;
-	width: 100%;
+	
 	z-index: 1;
 	overflow: auto;
   display: none;
@@ -73,7 +80,7 @@ h4 {
 #modal-text {
   background-color: white;
 	height: auto;
-	width: 50%;
+	width: 75%;
 	border-radius: 2%;
 	margin: 25% auto;
 	padding: 2%;
