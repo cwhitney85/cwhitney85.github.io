@@ -211,9 +211,22 @@ class Question {
     this.shuffle()
     $('<h4>').text(this.question).addClass('question-text').insertBefore('.question')
     for (let i = 0; i < this.questionArray.length; i++) {
-      $('<div>').addClass("col-lg-6 col-md-6 col-sm-8 col-xs-12").html(`
-      <div class="answer">${this.questionArray[i]}</div>
+      if(this.questionArray[i] === this.correct) {
+        $('<div>').addClass("col-lg-6 col-md-6 col-sm-8 col-xs-12").html(`
+      <div id="correct" class="answer">${this.questionArray[i]}</div>
       `).appendTo('.question')
+      } else if (this.question[i] === this.incorrectArray[0]) {
+        $('<div>').addClass("col-lg-6 col-md-6 col-sm-8 col-xs-12").html(`
+      <div id="dummy" class="answer">${this.questionArray[i]}</div>
+      `).appendTo('.question')
+      } else {
+        $('<div>').addClass("col-lg-6 col-md-6 col-sm-8 col-xs-12").html(`
+      <div id="wrong" class="answer">${this.questionArray[i]}</div>
+      `).appendTo('.question')
+      }
+      // $('<div>').addClass("col-lg-6 col-md-6 col-sm-8 col-xs-12").html(`
+      // <div class="answer">${this.questionArray[i]}</div>
+      // `).appendTo('.question')
     }
     Game.startTimer()
     $('.answer').on('click', (e) => {
