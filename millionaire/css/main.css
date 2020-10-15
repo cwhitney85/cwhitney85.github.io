@@ -79,9 +79,7 @@ h4 {
 /* Modal designs from GA SEI 9-21 modal_practice w03d02 */
 #intro {
   width: 75%;
-  
   margin: 5% auto;
-  
   text-align: center;
 }
 
@@ -91,7 +89,6 @@ h4 {
 	position: fixed;
 	top: 0;
 	left: 0;
-	
 	z-index: 1;
 	overflow: auto;
   display: none;

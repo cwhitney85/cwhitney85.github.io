@@ -172,6 +172,8 @@ const Game = {
     }
   },
 
+
+
   endGame: () => {
     $('.container').empty()
     $('h1').text('YOU LOSE!').css('margin', '0 auto').appendTo('.container')
@@ -211,11 +213,33 @@ class Question {
     this.shuffle()
     $('<h4>').text(this.question).addClass('question-text').insertBefore('.question')
     for (let i = 0; i < this.questionArray.length; i++) {
-      $('<div>').addClass("col-lg-6 col-md-6 col-sm-8 col-xs-12").html(`
-      <div class="answer">${this.questionArray[i]}</div>
+      if (this.questionArray[i] === this.correct) {
+        $('<div>').addClass("col-lg-6 col-md-6 col-sm-8 col-xs-12").html(`
+      <div class="answer correct">${this.questionArray[i]}</div>
       `).appendTo('.question')
+      } else if (this.questionArray[i] === this.incorrectArray[0]) {
+        $('<div>').addClass("col-lg-6 col-md-6 col-sm-8 col-xs-12").html(`
+      <div class="answer dummy">${this.questionArray[i]}</div>
+      `).appendTo('.question')
+      } else {
+        $('<div>').addClass("col-lg-6 col-md-6 col-sm-8 col-xs-12").html(`
+      <div class="answer wrong">${this.questionArray[i]}</div>
+      `).appendTo('.question')
+      }
+      // $('<div>').addClass("col-lg-6 col-md-6 col-sm-8 col-xs-12").html(`
+      // <div class="answer">${this.questionArray[i]}</div>
+      // `).appendTo('.question')
     }
     Game.startTimer()
+    $('.lifeline').on('click', (event) => {
+      if ($(event.target).text() === 'Timeout') {
+        Game.pauseTimer = true;
+        $('#timeout').remove()
+      } else if ($(event.target).text() === '50/50') {
+        $('.wrong').remove()
+        $('#fifty').remove()
+      }
+    })
     $('.answer').on('click', (e) => {
       Game.pauseTimer = true;
       Game.finalAnswer()
