@@ -5,6 +5,8 @@ body {
   font-family: 'Russo One', sans-serif;
 }
 
+
+/* Sidebar styling tips from https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp*/
 .sidebar {
   z-index: 1;
   height: 100%;
@@ -14,7 +16,11 @@ body {
   left: 0;
   background-color: black;
   padding: 2%;
-  
+  overflow-y: scroll;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 #small {
@@ -239,4 +245,20 @@ h4 {
   font-family: 'Arial';
   margin: 1% auto;
 	cursor: pointer;
+}
+
+@media (max-width: 540px) {
+  #small {
+    display: inline-block;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .container {
+    margin: auto;
+    text-align: center;
+
+  }
 }
