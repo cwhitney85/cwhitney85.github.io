@@ -164,7 +164,7 @@ const Game = {
       $('#money').text(`${Game.money}`)
       $('#timer').width('0%')
       $('#score').width(progress + '%')
-      $('h4').remove()
+      $('.question-text').remove()
       $('#timer-bar').remove()
       $('.question').empty()
       Game.keepGoing()
@@ -213,7 +213,7 @@ class Question {
 
   generateQ () {
     this.shuffle()
-    $('<h4>').text(this.question).addClass('question-text').insertBefore('.question')
+    $('<h4>').text(this.question.replace(/&quot;|&ldquo;|&eacute;|&#039;/g, '')).addClass('question-text').appendTo('.question')
     for (let i = 0; i < this.questionArray.length; i++) {
       if(this.questionArray[i] === this.correct) {
         $('<div>').addClass("col-lg-6 col-md-6 col-sm-8 col-xs-12").html(`
