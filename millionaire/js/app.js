@@ -20,19 +20,21 @@ const getQuestion = (apiUrl) => {
 
 // Game flow with API calls sorted for difficulty
 const questionGetter = () => {
+  let randomIndex = Math.floor(Math.random() *15)
   // console.log(Game.question)
   if (Game.question >= 0 && Game.question < 6) {
-    getQuestion('https://opentdb.com/api.php?amount=1&category=9&difficulty=easy&type=multiple');
+    // getQuestion('https://opentdb.com/api.php?amount=1&category=9&difficulty=easy&type=multiple');
+    getQuestion('https://opentdb.com/api.php?amount=1&difficulty=easy&type=multiple&category=' + Game.category[randomIndex]);
     Game.question += 1;
-    // console.log(Game.question)
-    // questionGetter()
   } else if (Game.question >= 6 && Game.question < 11) {
-    getQuestion('https://opentdb.com/api.php?amount=1&category=9&difficulty=medium&type=multiple')
+    // getQuestion('https://opentdb.com/api.php?amount=1&category=9&difficulty=medium&type=multiple')
+    getQuestion('https://opentdb.com/api.php?amount=1&difficulty=medium&type=multiple&category=' + Game.category[randomIndex]);
     Game.question += 1;
     // console.log(Game.question)
     // questionGetter()
   } else if (Game.question >= 11 && Game.question < 15) {
-    getQuestion('https://opentdb.com/api.php?amount=1&category=9&difficulty=hard&type=multiple');
+    // getQuestion('https://opentdb.com/api.php?amount=1&category=9&difficulty=hard&type=multiple');
+    getQuestion('https://opentdb.com/api.php?amount=1&difficulty=hard&type=multiple&category=' + Game.category[randomIndex]);
     Game.question += 1;
     console.log(Game.question)
     // questionGetter()
@@ -54,6 +56,7 @@ const Game = {
   pauseTimer: false,
   progress: 0,
   timer: 0,
+  category: ["9", "10", "11", "12", "14", "17", "18", "20", "21", "22", "23", "24", "25", "26", "27"],
 
 
   start: () => {
@@ -267,7 +270,7 @@ class Question {
 $(() => {
 
   Game.start()
-  
+  // console.log(Math.floor(Math.random() * 4))
 
 })
 
