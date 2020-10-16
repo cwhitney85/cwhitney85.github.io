@@ -215,13 +215,13 @@ class Question {
         $('<div>').addClass("col-lg-6 col-md-6 col-sm-8 col-xs-12").html(`
       <div id="correct" class="answer">${this.questionArray[i]}</div>
       `).appendTo('.question')
-      } else if (this.question[i] === this.incorrectArray[0]) {
+      } else if (this.questionArray[i] === this.incorrectArray[0]) {
         $('<div>').addClass("col-lg-6 col-md-6 col-sm-8 col-xs-12").html(`
       <div id="dummy" class="answer">${this.questionArray[i]}</div>
       `).appendTo('.question')
       } else {
         $('<div>').addClass("col-lg-6 col-md-6 col-sm-8 col-xs-12").html(`
-      <div id="wrong" class="answer">${this.questionArray[i]}</div>
+      <div class="answer wrong">${this.questionArray[i]}</div>
       `).appendTo('.question')
       }
       // $('<div>').addClass("col-lg-6 col-md-6 col-sm-8 col-xs-12").html(`
@@ -234,7 +234,7 @@ class Question {
         Game.pauseTimer = true;
         $('#timeout').remove()
       } else if ($(en.target).text() === "50/50") {
-        $('#wrong').remove()
+        $('.wrong').remove()
         $('#fifty').remove()
       }
     })
