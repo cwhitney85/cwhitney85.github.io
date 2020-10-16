@@ -5,10 +5,28 @@ body {
   font-family: 'Russo One', sans-serif;
 }
 
+.sidebar {
+  z-index: 1;
+  height: 100%;
+  width: 20%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: black;
+  padding: 2%;
+}
+
+.cash {
+  font-family: 'Lobster', cursive;
+  color: gold;
+  font-size: larger;
+  margin-top: 7px;
+}
+
 h1, h2 {
   font-family: 'Lobster', cursive;
   color: gold;
-  margin: 1%;
+  
 }
 
 h4 {
@@ -18,6 +36,8 @@ h4 {
 .container {
   margin: auto;
   text-align: center;
+  margin-left: 20%;
+  justify-self: center;
 }
 
 .footnote {
@@ -50,6 +70,13 @@ h4 {
 }
 
 .question {
+  width: 75%;
+  margin: 5% auto;
+  text-align: center;
+  justify-content: center;
+}
+
+.question-header {
   width: 75%;
   margin: 5% auto;
   text-align: center;

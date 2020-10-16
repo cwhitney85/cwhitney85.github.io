@@ -213,7 +213,7 @@ class Question {
 
   generateQ () {
     this.shuffle()
-    $('<h4>').text(this.question.replace(/&quot;|&ldquo;|&eacute;|&#039;/g, '')).addClass('question-text').appendTo('.question')
+    $('<h4>').text(this.question.replace(/&quot;|&ldquo;|&eacute;|&#039;/g, '')).addClass("col-lg-10 col-md-10 col-sm-12 col-xs-12").appendTo('.question-header')
     for (let i = 0; i < this.questionArray.length; i++) {
       if(this.questionArray[i] === this.correct) {
         $('<div>').addClass("col-lg-6 col-md-6 col-sm-8 col-xs-12").html(`
