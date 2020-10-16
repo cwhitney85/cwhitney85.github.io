@@ -229,6 +229,15 @@ class Question {
       // `).appendTo('.question')
     }
     Game.startTimer()
+    $('.lifeline').on('click', (en) => {
+      if ($(en.target).text() === "Timeout") {
+        Game.pauseTimer = true;
+        $('#timeout').remove()
+      } else if ($(en.target).text() === "50/50") {
+        $('#wrong').remove()
+        $('#fifty').remove()
+      }
+    })
     $('.answer').on('click', (e) => {
       // Game.pauseTimer = true;
       Game.finalAnswer()
