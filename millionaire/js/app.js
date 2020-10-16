@@ -162,7 +162,8 @@ const Game = {
   // Ends game on incorrect answer or time up
   endGame: () => {
     $('.container').empty()
-    $('<h1>').text('YOU LOSE!').css('margin', '0 auto').appendTo('.container')
+    $('<h1>').text('YOU LOSE!').css('margin', 'auto').css('margin-top', '25%').addClass('lose').appendTo('.container')
+    $('<a>').text('Play Again').addClass('btn btn-primary').attr('href', 'index.html').attr('id', 'playagain').insertAfter('.lose')
   },
 
 }

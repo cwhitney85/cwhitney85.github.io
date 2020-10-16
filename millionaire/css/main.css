@@ -44,6 +44,21 @@ h4 {
   color: gold;
 }
 
+.lose {
+  align-self: center;
+}
+
+#playagain {
+  margin: 2% auto;
+  padding: 15px 20px;
+	background-color: #891fb9;
+	border: solid gold 1px;
+	outline: none;
+	border-radius: 3%;
+	color: white;
+	cursor: pointer;
+}
+
 .container {
   margin: auto;
   text-align: center;
