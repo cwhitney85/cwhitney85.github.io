@@ -131,32 +131,46 @@ const Game = {
     if (Game.question !== 15) {
       if (Game.question === 1) {
         Game.money = '$500'
+        $('#first').css('color', 'gold')
       } else if (Game.question === 2) {
         Game.money = '$1,000'
+        $('#second').css('color', 'gold')
       } else if (Game.question === 3) {
         Game.money = '$2,000'
+        $('#third').css('color', 'gold')
       } else if (Game.question === 4) {
         Game.money = '$3,000'
+        $('#fourth').css('color', 'gold')
       } else if (Game.question === 5) {
         Game.money = '$5,000'
+        $('#fifth').css('color', 'gold')
       } else if (Game.question === 6) {
         Game.money = '$7,500'
+        $('#sixth').css('color', 'gold')
       } else if (Game.question === 7) {
         Game.money = '$10,000'
+        $('#seventh').css('color', 'gold')
       } else if (Game.question === 8) {
         Game.money = '$15,000'
+        $('#eighth').css('color', 'gold')
       } else if (Game.question === 9) {
         Game.money = '$25,000'
+        $('#ninth').css('color', 'gold')
       } else if (Game.question === 10) {
         Game.money = '$50,000'
+        $('#tenth').css('color', 'gold')
       } else if (Game.question === 11) {
         Game.money = '$75,000'
+        $('#eleventh').css('color', 'gold')
       } else if (Game.question === 12) {
         Game.money = '$150,000'
+        $('#twelfth').css('color', 'gold')
       } else if (Game.question === 13) {
         Game.money = '$250,000'
+        $('#thirteenth').css('color', 'gold')
       } else if (Game.question === 14) {
         Game.money = '$500,000'
+        $('#fourteenth').css('color', 'gold')
       } 
       progress += 6.67
       Game.time = 0
@@ -170,6 +184,7 @@ const Game = {
       Game.keepGoing()
     } else {
       Game.money = '$1,000,000'
+      $('#fifteenth').css('color', 'gold').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100)
       $('.container').empty()
       $('#money').text(`${Game.money}`)
       $('<h1>').text('You\'re a Millionaire!').appendTo('.container')
