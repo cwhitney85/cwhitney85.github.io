@@ -76,7 +76,7 @@ const Game = {
           <button class="continue-buttons" id="done">I'll take the money Reej</button>
         </div>
       </div>
-    `).appendTo('#continue-column')
+    `).insertAfter('#modal')
     $continue.show()
     $('.continue-buttons').on('click', (e) => {
       if ($(e.target).text() === "I want to be a millionaire!") {

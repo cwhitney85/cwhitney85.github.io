@@ -8,6 +8,7 @@ body {
 h1, h2 {
   font-family: 'Lobster', cursive;
   color: gold;
+  margin: 1%;
 }
 
 h4 {
@@ -17,6 +18,12 @@ h4 {
 .container {
   margin: auto;
   text-align: center;
+}
+
+.footnote {
+  left: 0;
+  bottom: 0;
+  font-size: xx-small;
 }
 
 #life {
@@ -88,7 +95,9 @@ h4 {
   color: black;
 	position: fixed;
 	top: 0;
-	left: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 	z-index: 1;
 	overflow: auto;
   display: none;
