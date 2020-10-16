@@ -164,7 +164,7 @@ const Game = {
       $('#money').text(`${Game.money}`)
       $('#timer').width('0%')
       $('#score').width(progress + '%')
-      $('.question-text').remove()
+      $('h4').remove()
       $('#timer-bar').remove()
       $('.question').empty()
       Game.keepGoing()
