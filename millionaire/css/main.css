@@ -14,11 +14,16 @@ body {
   left: 0;
   background-color: black;
   padding: 2%;
+  
+}
+
+#small {
+  display: none;
 }
 
 .cash {
   font-family: 'Lobster', cursive;
-  color: gold;
+  color: white;
   font-size: larger;
   margin-top: 7px;
 }
