@@ -51,8 +51,11 @@ const Game = {
         questionGetter()
       } else if ($(e.target).text() === "I'll take the money Reej"){
         $continue.remove()
-        alert("Thanks for playing!")
-        ('.container').empty()
+        // alert("Thanks for playing!")
+        $('.container').empty()
+        $('<h1>').text(`You won ${Game.money}!`).css('margin', 'auto').css('margin-top', '25%').addClass('walkaway').appendTo('.container')
+        $('<h2>').text(`Thanks for playing!`).addClass('thanks').insertAfter('.walkaway')
+        $('<a>').text('Play Again').addClass('btn btn-primary').attr('href', 'https://cwhitney85.github.io/millionaire/').attr('id', 'playagain').insertAfter('.thanks')
       }
     })
   },
@@ -155,7 +158,8 @@ const Game = {
       $('#fifteenth').css('color', 'gold').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100)
       $('.container').empty()
       $('#money').text(`${Game.money}`)
-      $('<h1>').text('You\'re a Millionaire!').appendTo('.container')
+      $('<h1>').text('You\'re a Millionaire!').css('margin', 'auto').css('margin-top', '25%').addClass('winner').appendTo('.container')
+      $('<a>').text('Play Again').addClass('btn btn-primary').attr('href', 'https://cwhitney85.github.io/millionaire/').attr('id', 'playagain').insertAfter('.winner')
     }
   },
 
@@ -163,7 +167,7 @@ const Game = {
   endGame: () => {
     $('.container').empty()
     $('<h1>').text('YOU LOSE!').css('margin', 'auto').css('margin-top', '25%').addClass('lose').appendTo('.container')
-    $('<a>').text('Play Again').addClass('btn btn-primary').attr('href', 'index.html').attr('id', 'playagain').insertAfter('.lose')
+    $('<a>').text('Play Again').addClass('btn btn-primary').attr('href', 'https://cwhitney85.github.io/millionaire/').attr('id', 'playagain').insertAfter('.lose')
   },
 
 }
