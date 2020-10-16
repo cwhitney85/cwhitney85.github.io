@@ -267,7 +267,7 @@ class Question {
         } else if ($(ev.target).text() === 'Final Answer') {
           Game.pauseTimer = true;
           $('#final-answer').remove()
-          if ($(e.target).text() === this.correct) {
+          if ($(e.target).attr('id') === 'correct') {
             // Flash effect from https://stackoverflow.com/questions/275931/how-do-you-make-an-element-flash-in-jquery
             $(e.target).css('background-color', '#85bb65').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100)
             setTimeout(Game.checker, 3000)
@@ -286,7 +286,6 @@ class Question {
 $(() => {
 
   Game.start()
-  // console.log(Math.floor(Math.random() * 4))
 
 })
 
