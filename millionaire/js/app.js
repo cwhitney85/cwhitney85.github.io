@@ -172,8 +172,6 @@ const Game = {
     }
   },
 
-
-
   endGame: () => {
     $('.container').empty()
     $('h1').text('YOU LOSE!').css('margin', '0 auto').appendTo('.container')
@@ -213,13 +211,13 @@ class Question {
     this.shuffle()
     $('<h4>').text(this.question).addClass('question-text').insertBefore('.question')
     for (let i = 0; i < this.questionArray.length; i++) {
-      if (this.questionArray[i] === this.correct) {
+      if(this.questionArray[i] === this.correct) {
         $('<div>').addClass("col-lg-6 col-md-6 col-sm-8 col-xs-12").html(`
-      <div class="answer correct">${this.questionArray[i]}</div>
+      <div id="correct" class="answer">${this.questionArray[i]}</div>
       `).appendTo('.question')
       } else if (this.questionArray[i] === this.incorrectArray[0]) {
         $('<div>').addClass("col-lg-6 col-md-6 col-sm-8 col-xs-12").html(`
-      <div class="answer dummy">${this.questionArray[i]}</div>
+      <div id="dummy" class="answer">${this.questionArray[i]}</div>
       `).appendTo('.question')
       } else {
         $('<div>').addClass("col-lg-6 col-md-6 col-sm-8 col-xs-12").html(`
@@ -231,23 +229,24 @@ class Question {
       // `).appendTo('.question')
     }
     Game.startTimer()
-    $('.lifeline').on('click', (event) => {
-      if ($(event.target).text() === 'Timeout') {
+    $('.lifeline').on('click', (en) => {
+      if ($(en.target).text() === "Timeout") {
         Game.pauseTimer = true;
         $('#timeout').remove()
-      } else if ($(event.target).text() === '50/50') {
+      } else if ($(en.target).text() === "50/50") {
         $('.wrong').remove()
         $('#fifty').remove()
       }
     })
     $('.answer').on('click', (e) => {
-      Game.pauseTimer = true;
+      // Game.pauseTimer = true;
       Game.finalAnswer()
       $('.final-answer-buttons').on('click', (ev) => {
         if ($(ev.target).text() === 'On second thought...') {
           $('#final-answer').hide()
-          
+          // Game.pauseTimer = false;
         } else if ($(ev.target).text() === 'Final Answer') {
+          Game.pauseTimer = true;
           $('#final-answer').remove()
           if ($(e.target).text() === this.correct) {
             // Flash effect from https://stackoverflow.com/questions/275931/how-do-you-make-an-element-flash-in-jquery
