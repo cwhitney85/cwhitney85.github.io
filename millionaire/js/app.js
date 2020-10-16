@@ -1,64 +1,25 @@
-// Progress Bar functionality inspired by https://codepen.io/volt122/pen/wbLrXm
-
-// getQuestion and questionGetter functions created with assistance from General Assembly TA Glenn Brown
-// Control flow for question difficulty
-let counter = 1;
-// Control flow for progress bar
-let progress = 0;
-
-// API call
-const getQuestion = (apiUrl) => {
-  $.ajax({
-    url: apiUrl
-  }).then((data) => {
-    // console.log(data)
-    const newQ = new Question(data.results[0].question, data.results[0].correct_answer,data.results[0].incorrect_answers)
-    console.log(newQ)
-    newQ.generateQ()
-  })
-}
-
-// Game flow with API calls sorted for difficulty
-const questionGetter = () => {
-  let randomIndex = Math.floor(Math.random() *15)
-  // console.log(Game.question)
-  if (Game.question >= 0 && Game.question < 6) {
-    // getQuestion('https://opentdb.com/api.php?amount=1&category=9&difficulty=easy&type=multiple');
-    getQuestion('https://opentdb.com/api.php?amount=1&difficulty=easy&type=multiple&category=' + Game.category[randomIndex]);
-    Game.question += 1;
-  } else if (Game.question >= 6 && Game.question < 11) {
-    // getQuestion('https://opentdb.com/api.php?amount=1&category=9&difficulty=medium&type=multiple')
-    getQuestion('https://opentdb.com/api.php?amount=1&difficulty=medium&type=multiple&category=' + Game.category[randomIndex]);
-    Game.question += 1;
-    // console.log(Game.question)
-    // questionGetter()
-  } else if (Game.question >= 11 && Game.question < 15) {
-    // getQuestion('https://opentdb.com/api.php?amount=1&category=9&difficulty=hard&type=multiple');
-    getQuestion('https://opentdb.com/api.php?amount=1&difficulty=hard&type=multiple&category=' + Game.category[randomIndex]);
-    Game.question += 1;
-    console.log(Game.question)
-    // questionGetter()
-  } else {
-    alert("You won!")
-  }
-}
-
 //========================
 // Game Object ===========
 //========================
 
 const Game = {
-  gameOn: true,
+  // Control flow for question difficulty
   question: 0,
+  // Updates money tracker
   money: '',
-  isFinalAnswer: false,
+  // Updates timer bar
   time: 0,
+  // Control switch for pausing timer bar
   pauseTimer: false,
+  // Control flow for progress bar
+  // Progress Bar functionality inspired by https://codepen.io/volt122/pen/wbLrXm
   progress: 0,
+  // Null variable to clearInterval on new question
   timer: 0,
+  // Pulled to questionGetter to get random category from the API and filter out unwanted categories
   category: ["9", "10", "11", "12", "14", "17", "18", "20", "21", "22", "23", "24", "25", "26", "27"],
 
-
+  // Starts game on page load
   start: () => {
     const $modal = $('#modal')
     $modal.show()
@@ -70,6 +31,9 @@ const Game = {
     })
   },
 
+  // Checks if user wants to continue
+  // Calls questionGetter() if yes
+  // Alert "Thanks for playing" if no
   keepGoing: () => {
     const $continue = $('<div>').attr('id', 'continue').html(`
       <div id="continue-text">
@@ -93,6 +57,7 @@ const Game = {
     })
   },
 
+  // Populates the DOM with final answer modal
   finalAnswer: () => {
     const $final = $('<div>').attr('id', 'final-answer').html(`
     <div id="final-answer-text">
@@ -106,6 +71,10 @@ const Game = {
     $final.show()
   },
 
+  // Populates the DOM with timer bar and starts on each new question
+  // If time runs out ends game
+  // Sets interval to keep progressing the timer bar
+  // generateQ clears the interval if correct
   startTimer: () => {
     $('<div>').addClass('progress').attr('id', 'timer-bar').html(`
     <div id="timer" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -116,10 +85,8 @@ const Game = {
       if (Game.pauseTimer === false) {
         if (Game.time >= 100) {
           clearInterval(Game.timer);
-          alert("Time's up!")
-          Game.time = 0;
+          Game.endGame()
         } else {
-
           Game.time++;
           $('#timer').width(Game.time + '%');
         }
@@ -127,6 +94,7 @@ const Game = {
     }
   },
 
+  // On correct answer updates Game and clears the DOM for the next question
   checker: () => {
     if (Game.question !== 15) {
       if (Game.question === 1) {
@@ -172,12 +140,12 @@ const Game = {
         Game.money = '$500,000'
         $('#fourteenth').css('color', 'gold')
       } 
-      progress += 6.67
+      Game.progress += 6.67
       Game.time = 0
       clearInterval(Game.timer)
       $('#money').text(`${Game.money}`)
       $('#timer').width('0%')
-      $('#score').width(progress + '%')
+      $('#score').width(Game.progress + '%')
       $('h4').remove()
       $('#timer-bar').remove()
       $('.question').empty()
@@ -191,12 +159,14 @@ const Game = {
     }
   },
 
+  // Ends game on incorrect answer or time up
   endGame: () => {
     $('.container').empty()
     $('<h1>').text('YOU LOSE!').css('margin', '0 auto').appendTo('.container')
-  }
+  },
 
 }
+
 
 //========================
 // Question Class ========
@@ -210,9 +180,10 @@ class Question {
     this.questionArray = [correct, incorrectArray[0], incorrectArray[1], incorrectArray[2]];
   }
 
+  // Produces random order of questions from the API
+  // Fisher-Yates shuffle algorithm from: http://sedition.com/perl/javascript-fy.html & https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+  // Modified to test and understand functionality
   shuffle () {
-    // Fisher-Yates shuffle algorithm from: http://sedition.com/perl/javascript-fy.html & https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-    // Modified to test and understand functionality
     let currentIndex = this.questionArray.length;
     let tempValue;
     let randomIndex;
@@ -226,6 +197,8 @@ class Question {
     return this.questionArray
   }
 
+  // Calls shuffle on a new instance of Question from questionGetter and populates DOM
+  // Adds timer, question, and answers with event handlers
   generateQ () {
     this.shuffle()
     $('<h4>').text(this.question.replace(/&quot;|&ldquo;|&eacute;|&#039;/g, '')).addClass("col-lg-10 col-md-10 col-sm-12 col-xs-12").appendTo('.question-header')
@@ -243,9 +216,6 @@ class Question {
       <div class="answer wrong">${this.questionArray[i]}</div>
       `).appendTo('.question')
       }
-      // $('<div>').addClass("col-lg-6 col-md-6 col-sm-8 col-xs-12").html(`
-      // <div class="answer">${this.questionArray[i]}</div>
-      // `).appendTo('.question')
     }
     Game.startTimer()
     $('.lifeline').on('click', (en) => {
@@ -258,12 +228,10 @@ class Question {
       }
     })
     $('.answer').on('click', (e) => {
-      // Game.pauseTimer = true;
       Game.finalAnswer()
       $('.final-answer-buttons').on('click', (ev) => {
         if ($(ev.target).text() === 'On second thought...') {
           $('#final-answer').hide()
-          // Game.pauseTimer = false;
         } else if ($(ev.target).text() === 'Final Answer') {
           Game.pauseTimer = true;
           $('#final-answer').remove()
@@ -282,7 +250,40 @@ class Question {
 
 }
 
+// getQuestion and questionGetter functions created with assistance from General Assembly TA Glenn Brown
+// API call
+const getQuestion = (apiUrl) => {
+  $.ajax({
+    url: apiUrl
+  }).then((data) => {
+    // console.log(data)
+    const newQ = new Question(data.results[0].question, data.results[0].correct_answer,data.results[0].incorrect_answers)
+    console.log(newQ)
+    newQ.generateQ()
+  })
+}
 
+// Game flow with API calls sorted for difficulty
+const questionGetter = () => {
+  let randomIndex = Math.floor(Math.random() *15)
+  if (Game.question >= 0 && Game.question < 6) {
+    getQuestion('https://opentdb.com/api.php?amount=1&difficulty=easy&type=multiple&category=' + Game.category[randomIndex]);
+    Game.question += 1;
+  } else if (Game.question >= 6 && Game.question < 11) {
+    getQuestion('https://opentdb.com/api.php?amount=1&difficulty=medium&type=multiple&category=' + Game.category[randomIndex]);
+    Game.question += 1;
+  } else if (Game.question >= 11 && Game.question < 15) {
+    getQuestion('https://opentdb.com/api.php?amount=1&difficulty=hard&type=multiple&category=' + Game.category[randomIndex]);
+    Game.question += 1;
+    console.log(Game.question)
+  } else {
+    alert("You won!")
+  }
+}
+
+
+
+// Starts game on page load
 $(() => {
 
   Game.start()
