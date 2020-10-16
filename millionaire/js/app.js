@@ -99,7 +99,7 @@ const Game = {
         <button class="final-answer-buttons" id="no" href="#">On second thought...</button>
       </div>
     </div>
-    `).appendTo('#final-column')
+    `).insertAfter('#modal')
     $final.show()
   },
 
@@ -241,13 +241,14 @@ class Question {
       }
     })
     $('.answer').on('click', (e) => {
-      Game.pauseTimer = true;
+      // Game.pauseTimer = true;
       Game.finalAnswer()
       $('.final-answer-buttons').on('click', (ev) => {
         if ($(ev.target).text() === 'On second thought...') {
           $('#final-answer').hide()
           
         } else if ($(ev.target).text() === 'Final Answer') {
+          Game.pauseTimer = true;
           $('#final-answer').remove()
           if ($(e.target).text() === this.correct) {
             // Flash effect from https://stackoverflow.com/questions/275931/how-do-you-make-an-element-flash-in-jquery
