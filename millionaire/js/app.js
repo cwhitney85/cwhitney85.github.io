@@ -193,7 +193,7 @@ const Game = {
 
   endGame: () => {
     $('.container').empty()
-    $('h1').text('YOU LOSE!').css('margin', '0 auto').appendTo('.container')
+    $('<h1>').text('YOU LOSE!').css('margin', '0 auto').appendTo('.container')
   }
 
 }
@@ -267,7 +267,7 @@ class Question {
         } else if ($(ev.target).text() === 'Final Answer') {
           Game.pauseTimer = true;
           $('#final-answer').remove()
-          if ($(e.target).attr('id', 'correct')) {
+          if ($(e.target).text() === this.correct) {
             // Flash effect from https://stackoverflow.com/questions/275931/how-do-you-make-an-element-flash-in-jquery
             $(e.target).css('background-color', '#85bb65').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100)
             setTimeout(Game.checker, 3000)
