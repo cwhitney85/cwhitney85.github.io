@@ -5,7 +5,7 @@
 }
 
 :root {
-  --ff-primary: 'Source Sans Pro', sans-serif;
+  --ff-primary: 'Source Sans Pro', serif;
   --ff-secondary: 'Source Sans Pro' monospace;
 
   --fw-reg: 300;
@@ -200,6 +200,10 @@ header {
     left: -1.5em;
     width: calc(100% + 1.5em);
   }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .my-skills {
