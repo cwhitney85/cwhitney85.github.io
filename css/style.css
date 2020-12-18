@@ -52,6 +52,29 @@ img {
 
 strong { font-weight: var(--fw-bold);}
 
+:focus {
+  outline: 3px solid var(--clr-accent);
+  outline-offset: 3px;
+}
+
+.btn {
+  display: inline-block;
+  padding: .5em 2.5em;
+  background: var(--clr-accent);
+  color: var(--clr-dark);
+  text-decoration: none;
+  cursor: pointer;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: var(--fw-bold);
+  transition: transform 200ms ease-in-out;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
 h1,
 h2,
 h3 {
@@ -133,6 +156,89 @@ h3 {
   }
 }
 
+.my-skills {
+  background-color: var(--clr-dark);
+  background-image: url(../img/85794.jpg);
+  background-size: contain;
+  color: var(--clr-light);
+  text-align: center;
+}
+
+.section-title-skills {
+  color: var(--clr-accent);
+  position: relative;
+}
+
+.section-title-skills::after {
+  content: '';
+  display: block;
+  width: 25%;
+  height: 1px;
+  margin: 0.5em;
+  background: var(--clr-light);
+  opacity: 0.5;
+}
+
+.skills {
+  margin-bottom: 4em;
+}
+
+.skill {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+@media (min-width: 800px) {
+  .skills {
+    display: flex;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .skill + .skill {
+    margin-left: 2em;
+  }
+}
+
+.about-me {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.about-me-img {
+  box-shadow: var(--bs);
+}
+
+@media (min-width: 600px) {
+  .about-me {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    grid-template-areas: 
+      "title img"
+      "subtitle img"
+      "text img";
+    grid-column-gap: 2em;
+  }
+
+  .about-section-title {
+    grid-area: title;
+  }
+
+  .about-section-subtitle {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    position: relative;
+    left: -2em;
+    width: calc(100% + 2em);
+    padding-left: 1em;
+    padding-right: calc(200px + 4em);
+  }
+
+  .about-me-img {
+    grid-area: img;
+  }
+}
 
 
 
