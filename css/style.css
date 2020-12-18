@@ -152,6 +152,17 @@ header {
   color: inherit;
   font-weight: var(--fw-bold);
   font-size: var(--fs-h3);
+  text-decoration: none;
+}
+
+@media (max-width: 300px) {
+  .nav {
+    display: none;
+  }
+}
+
+.pagelink:hover {
+  color: var(--clr-accent);
 }
 
 .intro {
@@ -193,8 +204,10 @@ header {
 
 .my-skills {
   background-color: var(--clr-dark);
-  background-image: url(../img/85794.jpg);
-  background-size: contain;
+  background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(../img/IMG-5146.jpg);
+  background-repeat: no-repeat;
+  
+  background-size: 100% 100%;
   color: var(--clr-light);
   text-align: center;
 }
@@ -291,7 +304,7 @@ header {
 
 .portfolio {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
 
 .portfolio-item {
@@ -303,6 +316,8 @@ header {
   transition: 
     transform 750ms cubic-bezier(.5, 0, .5, 1),
     opacity 250ms linear;
+  
+  height: 400px;
 }
 
 .portfolio-item:focus {
