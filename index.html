@@ -9,7 +9,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;900&display=swap" rel="stylesheet">
-  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Slab&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -25,29 +26,29 @@
     </nav>
   </header>
 
-  <section class="home" id="home">
-    <h1 class="intro">Hello, World. I'm <strong>Colin Whitney</strong></h1>
-    <p class="introtext">Full-Stack Dev</p>
-    <img src="img/IMG-4863.jpg" alt="">
+  <section class="intro" id="home">
+    <h1 class="section-title intro-section-title">Hello, World. I'm <strong>Colin Whitney</strong></h1>
+    <p class="section-subtitle intro-section-subtitle">Full-Stack Dev</p>
+    <img src="img/IMG-4863.jpg" alt="" class="intro-img">
   </section>
 
   <section class="my-skills" id="skills">
-    <h2 class="skills-section section-title">Skills</h2>
+    <h2 class="skills-section-title section-title">Skills</h2>
     <!-- List of language icons  -->
     <div class="skills">
       <div class="skill">
         <h3>Front End</h3>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam voluptatibus dolore nemo quis. Dolore velit unde, sapiente esse ratione soluta, itaque officiis eaque asperiores tempore nostrum nulla facilis quaerat! Ab.</p>
+        <p>From basic HTML/CSS and JavaScript to fully full-stack applications, I know my way around most modern frameworks with a particular focus on React Redux and NodeJs.</p>
       </div>
 
       <div class="skill">
         <h3>Back End</h3>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis, tempore? Labore provident corporis error harum explicabo enim cumque consectetur magnam, officia minus quasi aliquam sit eos est amet unde blanditiis?</p>
+        <p>Comfortable with structured (SQLite, Postgres) and unstructured (MongoDB) databases. Experience building and maintaining my own APIs as well as working with third parties.</p>
       </div>
 
       <div class="skill">
         <h3>Design</h3>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui, aspernatur animi consequuntur laborum numquam accusantium reprehenderit soluta, commodi aliquid harum omnis, modi eum fugit ab culpa! Iste ipsum asperiores enim?</p>
+        <p>On top of basic CSS, I pride myself on staying on top of the latest responsive design frameworks - particularly Bootstrap  to make sure my projects are made efficiently and look great</p>
       </div>
     </div>
 
@@ -59,46 +60,61 @@
     <p class="about-section-subtitle section-subtitle"></p>
 
     <div class="about-me-text">
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem ullam tenetur error officia, minus molestias voluptate. Minus ratione labore at nesciunt odit ad, numquam, explicabo obcaecati dolore, architecto ducimus deserunt!</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque rem dolores, asperiores explicabo placeat alias praesentium iste facere, quia repudiandae unde nulla inventore laboriosam, odio consequatur temporibus quaerat voluptatum consectetur.</p>
+      <p>I am a lifelong learner and aspiring software engineer with a background in sales and consulting. I am driven by a desire to make clients’ visions into reality through solving unique, complex problems and strong, clear communication.</p>
+      <p>When I'm not in front of the computer I like to be in nature. Hiking, running, and at the park with my dog Otis is where I'm at peace.</p>
     </div>
 
     <img src="img/IMG-1989.JPG" alt="" class="about-me-img">
   </section>
 
   <section class="projects" id="projects">
-    <h2 class="projects-section section-title">Projects</h2>
-    <p class="projects-subtitle section-subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem cum blanditiis vero nostrum delectus, minus soluta ea ipsa optio dolorum, praesentium quibusdam mollitia a nesciunt eligendi vitae corporis illum perspiciatis!</p>
+    <h2 class="projects-section-title section-title">Projects</h2>
+    
 
     <div class="portfolio">
-      <a href="" class="portfolio-item">
+      <a href="https://frozen-savannah-52281.herokuapp.com/" class="portfolio-item">
         <img src="img/142426903-huge.jpg" alt="" class="portfolio-img">
       </a>
 
-      <a href="" class="portfolio-item">
+      <a href="https://stark-ocean-08311.herokuapp.com/home" class="portfolio-item">
         <img src="img/shutterstock_172791128.jpg" alt="" class="portfolio-img">
       </a>
 
-      <a href="" class="portfolio-item">
+      <a href="https://village-kitchen.herokuapp.com/" class="portfolio-item">
         <img src="img/shutterstock_234673435.jpg" alt="" class="portfolio-img">
       </a>
 
-      <a href="" class="portfolio-item">
+      <a href="https://cwhitney85.github.io/millionaire/" class="portfolio-item">
         <img src="img/shutterstock_696138958.jpg" alt="" class="portfolio-img">
       </a>
     </div>
   </section>
 
   <section class="resume" id="resume">
-    <h2 class="section-title">My Resume</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis laborum mollitia ad dolorum quia dicta temporibus voluptate, cumque repudiandae harum commodi beatae repellendus quaerat, libero expedita quod laudantium rem illo.</p>
+    <h2 class="section-title resume-section-title">My Resume</h2>
+    <div class="skills">
+      <div class="skill">
+        <h3>Professional</h3>
+        <p>Over a decade of professional work experience in Real Estate and Finance with a proven track record for managing complicated projects with multiple interested parties. Most recently consulted tech startups on their real estate strategy helping them scale intelligently through rapid growth.</p>
+      </div>
+
+      <div class="skill">
+        <h3>Educational</h3>
+        <p>I graduated Connecticut College in '07 with a BA in Philosophy. I always have to feel like I'm improving which is why continuing education is so important to me. In 2020, I completed General Assembly's Software Engineering Intensive bootcamp, fulfilling a long-term goal to learn the skills of the future work force.</p>
+      </div>
+
+      <div class="skill">
+        <h3>Volunteer</h3>
+        <p>As someone who has been truly blessed in life, giving back to my community is extremely important to me. Currently I volunteer at the Harvest on Vine food shelter in Charlestown. Previously I've worked with Big Brothers and BUILD Boston.</p>
+      </div>
+    </div>
   </section>
 
   <footer class="footer">
     <a href="mailto:colin.whitney@gmail.com" class="footer-link">colin.whitney@gmail.com</a>
     <ul class="social-list">
-      <li class="social-list-item"><a class="social-list-link" href="www.linkedin.com"><i class="fab fa-linkedin"></i></a></li>
-      <li class="social-list-item"><a class="social-list-link" href="www.github.com"><i class="fab fa-github"></i></a></li>
+      <li class="social-list-item"><a class="social-list-link" href="https://www.linkedin.com/in/colinwhitney1/"><i class="fab fa-linkedin"></i></a></li>
+      <li class="social-list-item"><a class="social-list-link" href="https://github.com/cwhitney85"><i class="fab fa-github"></i></a></li>
     </ul>
   </footer>
 </body>
