@@ -237,8 +237,61 @@ h3 {
 
   .about-me-img {
     grid-area: img;
+    position: relative;
+    z-index: 2;
   }
 }
+
+.projects {
+  background-color: var(--clr-dark);
+  color: var(--clr-light);
+  text-align: center;
+}
+
+.project-subtitle {
+  color: var(--clr-accent);
+  font-weight: var(--fw-bold);
+  margin-bottom: 2em;
+}
+
+.portfolio {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.portfolio-item {
+  background: var(--clr-accent);
+  overflow: hidden;
+}
+
+.portfolio-img {
+  transition: 
+    transform 750ms cubic-bezier(.5, 0, .5, 1),
+    opacity 250ms linear;
+}
+
+.portfolio-item:focus {
+  position: relative;
+  z-index: 2;
+}
+
+.portfolio-img:hover,
+.portfolio-item:focus .portfolio-img {
+  transform: scale(1.2);
+  opacity: .75;
+}
+
+.footer {
+  background: #111;
+  color: var(--clr-accent);
+  text-align: center;
+  padding: 2.5em 0;
+}
+
+.footer a {
+  color: inherit;
+}
+
 
 
 
