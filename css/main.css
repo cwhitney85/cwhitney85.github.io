@@ -91,6 +91,7 @@ header {
 
 .skills-item {
   display: grid;
+  font-size: 7em;
 }
 
 .portfolio-img {
