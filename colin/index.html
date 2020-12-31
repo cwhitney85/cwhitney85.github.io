@@ -57,22 +57,22 @@
 
     <div class="portfolio">
       
-        <div >
+        <div class="slide fade">
           <a href="https://frozen-savannah-52281.herokuapp.com/" class="portfolio-item">
             <img src="../img/142426903-huge.jpg" alt="" class="portfolio-img">
           </a>
         </div>
-        <div >
+        <div class="slide fade">
           <a href="https://stark-ocean-08311.herokuapp.com/home" class="portfolio-item">
             <img src="../img/shutterstock_172791128.jpg" alt="" class="portfolio-img">
           </a>
         </div>
-        <div >
+        <div class="slide fade">
           <a href="https://village-kitchen.herokuapp.com/" class="portfolio-item">
             <img src="../img/shutterstock_234673435.jpg" alt="" class="portfolio-img">
           </a>
         </div>
-        <div >
+        <div class="slide fade">
           <a href="https://cwhitney85.github.io/millionaire/" class="portfolio-item">
             <img src="../img/shutterstock_696138958.jpg" alt="" class="portfolio-img">
           </a>
@@ -116,7 +116,24 @@
       <li class="contact-list-item"><a class="contact-list-link" href="https://github.com/cwhitney85">Colin's GitHub</a></li>
     </ul>
   </footer>
+  <script>
+    let slideIndex = 0;
+    slideShow();
 
+    function slideShow() {
+      let i;
+      let slides = document.getElementsByClassName("slide");
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {
+        slideIndex = 1;
+      }
+      slides[slideIndex - 1].style.display = "block";
+      setTimeout(slideShow, 8000);
+    }
+  </script>
 
 </body>
 </html>

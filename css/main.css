@@ -99,7 +99,62 @@ header {
   align-content: center;
 }
 
+@media (max-width: 800px) {
+  .skills-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 320px) {
+  .skills-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.portfolio {
+  position: relative;
+  margin: auto;
+}
 
 .portfolio-img {
   width: 100%;
+  height: 25em;
+  vertical-align: middle;
+}
+
+@media (max-width: 800px) {
+  .portfolio-img {
+    height: 15em;
+  }
+}
+
+@media (max-width: 320px) {
+  .portfolio-img {
+    height: 5em;
+  }
+}
+
+.portfolio-img:hover {
+  opacity: .75;
+}
+
+.slide {
+  display: none;
+}
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
 }
