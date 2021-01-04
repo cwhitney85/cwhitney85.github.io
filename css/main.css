@@ -158,3 +158,26 @@ header {
   from {opacity: .4} 
   to {opacity: 1}
 }
+
+.contact {
+  margin: 0 auto;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  padding: 2.5em 0;
+  font-size: 1.25rem;
+}
+
+.contact-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 2em 0 0;
+  padding: 0;
+}
+
+.contact-list-item {
+  margin: 0 .5em;
+}
