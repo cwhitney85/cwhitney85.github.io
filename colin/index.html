@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@master/devicon.min.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Slab&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
@@ -17,19 +21,19 @@
         <li class="navitem"><a href="#skills" class="pagelink">Skills</a></li>
         <li class="navitem"><a href="#about-me" class="pagelink">About Me</a></li>
         <li class="navitem"><a href="#projects" class="pagelink">Projects</a></li>
-        <li class="navitem"><a href="#resume" class="pagelink">Contact</a></li>
+        <li class="navitem"><a href="#contact" class="pagelink">Contact</a></li>
       </ul>
     </nav>
   </header>
   
   <section class="title" id="home">
     <div class="title-text">
-      <h1><em>COLIN<strong>WHITNEY</strong></em></h1>
+      <h1><em>Colin<strong class="last-name">WHITNEY</strong></em></h1>
       <h3>Full Stack Developer</h3>
     </div>
   </section>
 
-  <hr>
+  
 
   <section class="skills" id="skills">
     <h2 class="skills-title">My Skills</h2>
@@ -49,7 +53,19 @@
     </ul>
   </section>
 
-  <hr>
+  <section class="about-me" id="about-me">
+    <h2 class="about-section-title section-title">About Me</h2>
+    <p class="about-section-subtitle section-subtitle"></p>
+
+    <div class="about-me-grid">
+      <div class="about-me-text">
+        <p>I am a lifelong learner and aspiring software engineer with a background in sales and consulting. I am driven by a desire to make clients’ visions into reality through solving unique, complex problems and strong, clear communication.</p>
+        <p>When I'm not in front of the computer I like to be in nature. Hiking, running, and at the park with my dog Otis.</p>
+      </div>
+
+      <img src="../img/IMG-1989.JPG" alt="" class="about-me-img">
+    </div>
+  </section>
 
   <section class="projects" id="projects">
     <h2 class="projects-section-title section-title">Projects</h2>
@@ -81,48 +97,29 @@
     </div>
   </section>
 
-  <hr>
+  
 
-  <section class="about-me" id="about-me">
-    <h2 class="about-section-title section-title">About Me</h2>
-    <p class="about-section-subtitle section-subtitle"></p>
 
-    <div class="about-me-text">
-      <p>I am a lifelong learner and aspiring software engineer with a background in sales and consulting. I am driven by a desire to make clients’ visions into reality through solving unique, complex problems and strong, clear communication.</p>
-      <p>When I'm not in front of the computer I like to be in nature. Hiking, running, and at the park with my dog Otis.</p>
-    </div>
-  </section>
 
-  <hr>
 
   <section class="contact" id="contact">
     <iframe class="contact-form" src="https://docs.google.com/forms/d/e/1FAIpQLSeTdSWCE1wzziN2h5bYA-KFr6nZY4QX5L0UM4FI0hqtMn-YrA/viewform?embedded=true" width="640" height="673" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-    <!-- <h2>Contact Colin:</h2>
-    <form action="">
-      <label for="">Name</label>
-      <input type="text" name="" id=""><br>
-      <label for="">Email</label>
-      <input type="text"><br>
-      <label for="">Message</label><br>
-      <textarea name="" id="" cols="30" rows="10"></textarea><br>
-      <input type="submit" class="btn btn-primary">
-    </form> -->
   </section>
 
   <footer class="footer">
     <ul class="contact-list">
       
       <li class="contact-list-item">
-        <a class="contact-list-link" href="https://www.linkedin.com/in/colinwhitney1/"><i class="far fa-file"></i></a><br>
-        Colin's Resume
+        <a class="contact-list-link" href="https://drive.google.com/file/d/1nlCnKaHuOOs-CEg3Wiq4nPyp_vFxRGcF/view?usp=sharing"><i class="far fa-file"></i></a><br>
+        Resume
       </li>
       <li class="contact-list-item">
         <a class="contact-list-link" href="https://www.linkedin.com/in/colinwhitney1/"><i class="fab fa-linkedin"></i></a><br>
-        Colin's LinkedIn
+        LinkedIn
       </li>
       <li class="contact-list-item">
         <a class="contact-list-link" href="https://github.com/cwhitney85"><i class="fab fa-github"></i></a><br>
-        Colin's GitHub
+        GitHub
       </li>
     </ul>
   </footer>
