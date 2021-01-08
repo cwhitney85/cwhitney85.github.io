@@ -5,33 +5,76 @@
   /* border: solid gold 1px; */
 }
 
+:root {
+  --ff-primary: 'Roboto Mono', monospace;
+  --ff-secondary: 'Roboto Slab', serif;
+
+  --fw-reg: 300;
+  --fw-bold: 900;
+
+  --clr-light: #fff;
+  --clr-dark: #303030;
+  --clr-accent: #2e38c4;
+
+  --fs-h1: 3rem;
+  --fs-h2: 2.25rem;
+  --fs-h3: 1.25rem;
+  --fs-body: 1rem;
+
+  --bs: 0.25em 0.25em 0.75em rgba(0, 0, 0, .25), 0.125em 0.125em 0.25em rgba(0,0,0,.15);
+}
+
+@media (min-width: 800px) {
+  :root {
+    --fs-h1: 4.5rem;
+    --fs-h2: 3.75rem;
+    --fs-h3: 1.5rem;
+    --fs-body: 1.125rem;
+  }
+}
+
 body,
 html {
   height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+
+
 body {
-  background: rgb(24, 20, 20);
-  color: white;
+  background: var(--clr-dark);
+  color: var(--clr-light);
   margin: 0;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 1rem;
+  font-family: var(--ff-primary);
+  font-size: var(--fs-body);
   line-height: 1.6;
 }
 
-/* section {
-  padding: 5em 2em;
-} */
+section {
+  padding: 0 2em;
+}
+
 
 header {
   display: flex;
   justify-content: space-between;
+}
 
+.section-title {
+  text-align: center;
+}
+
+.last-name {
+  color: var(--clr-accent);
 }
 
 .nav {
   position: fixed;
-  background: rgb(24, 20, 20);
+  background: var(--clr-dark);
+  color: var(--clr-light);
   width: 100%;
   z-index: 3;
   top: 0;
@@ -55,7 +98,19 @@ header {
 
 .pagelink {
   color: inherit;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-h3);
   text-decoration: none;
+}
+
+@media (max-width: 300px) {
+  .nav {
+    display: none;
+  }
+}
+
+.pagelink:hover {
+  color: var(--clr-accent);
 }
 
 .title {
@@ -75,7 +130,6 @@ header {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 
 
 .skills-title {
@@ -159,25 +213,61 @@ header {
   to {opacity: 1}
 }
 
-.contact {
+.about-me-grid {
+  max-width: 1000px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2em;
+}
+
+.about-me-text {
+  display: grid;
+  grid-column: span 3;
+  margin-top: 0;
+}
+
+.about-me-img {
+  display: grid;
+  grid-column: span 1;
+  width: 100%;
+  box-shadow: var(--bs);
+}
+
+.contact {
+  margin: 2em auto;
   text-align: center;
 }
 
+.footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
 footer {
+  background: #111;
+  color: var(--clr-accent);
   text-align: center;
-  padding: 2.5em 0;
-  font-size: 1.25rem;
+  padding: 1.5em 0;
+  font-size: var(--fs-h3);
 }
 
 .contact-list {
   list-style: none;
   display: flex;
   justify-content: center;
-  margin: 2em 0 0;
+  margin: 2em 0;
   padding: 0;
 }
 
+.contact-list-link:hover {
+  opacity: .7;
+}
+
+.contact-list-link {
+  padding: .5em;
+}
+
 .contact-list-item {
-  margin: 0 .5em;
+  margin: 0 1em;
 }
